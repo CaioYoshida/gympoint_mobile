@@ -1,13 +1,14 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import 'react-native-gesture-handler';
+
+import App from '~/App';
 
 // import { Container } from './styles';
 
-export default function App() {
+export default function Index() {
   return (
-    <View>
-      <Text>Hello Gympoint</Text>
-    </View>
+    <>
+      <App />
+    </>
   );
 }
