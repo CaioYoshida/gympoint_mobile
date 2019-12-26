@@ -1,4 +1,6 @@
+import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import SignIn from '~/pages/SignIn';
@@ -8,6 +10,8 @@ import List from '~/pages/List';
 import Answer from '~/pages/Answer';
 import Help_order from '~/pages/Help_order';
 
+import Header from '~/Components/Header';
+
 export default createAppContainer(
   createSwitchNavigator(
     {
@@ -15,7 +19,7 @@ export default createAppContainer(
       App: createBottomTabNavigator(
         {
           Checkins,
-          Help_orders: createSwitchNavigator(
+          Help_orders: createStackNavigator(
             {
               List,
               Answer,
@@ -23,6 +27,12 @@ export default createAppContainer(
             },
             {
               initialRouteName: 'Help_order',
+              defaultNavigationOptions: {
+                header: Header,
+              },
+              cardStyle: {
+                backgroundColor: '#fff',
+              },
             }
           ),
         },
