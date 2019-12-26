@@ -1,12 +1,29 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 
-// import { Container } from './styles';
+import {
+  Container,
+  CheckinButton,
+  CheckinView,
+  CheckinTag,
+  CheckinText,
+  CheckinTime,
+} from './styles';
+
+import Header from '~/Components/Header';
 
 export default function Checkins() {
   return (
-    <View>
-      <Text>Checkins</Text>
-    </View>
+    <>
+      <Header />
+      <Container>
+        <CheckinButton>Novo check-in</CheckinButton>
+        <CheckinView>
+          <CheckinTag>
+            <CheckinText>Check-in #1</CheckinText>
+            <CheckinTime>Há 7 dias</CheckinTime>
+          </CheckinTag>
+        </CheckinView>
+      </Container>
+    </>
   );
 }
