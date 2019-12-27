@@ -1,4 +1,5 @@
 import React from 'react';
+import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator, HeaderBackButton } from 'react-navigation-stack';
@@ -19,8 +20,24 @@ function SubmitIconCheckins({ tintColor }) {
   return <Icon name="arrow-upward" size={20} color={tintColor} />;
 }
 
+function CheckinsText({ tintColor }) {
+  return (
+    <Text style={{ fontSize: 13, alignSelf: 'center', color: `${tintColor}` }}>
+      Check-ins
+    </Text>
+  );
+}
+
 function SubmitIconHelp_order({ tintColor }) {
   return <Icon name="assignment" size={20} color={tintColor} />;
+}
+
+function Help_orderText({ tintColor }) {
+  return (
+    <Text style={{ fontSize: 13, alignSelf: 'center', color: `${tintColor}` }}>
+      Pedir ajuda
+    </Text>
+  );
 }
 
 export default createAppContainer(
@@ -32,7 +49,7 @@ export default createAppContainer(
           Checkins: {
             screen: Checkins,
             navigationOptions: {
-              tabBarLabel: 'Check-ins',
+              tabBarLabel: CheckinsText,
               tabBarIcon: SubmitIconCheckins,
             },
           },
@@ -55,7 +72,7 @@ export default createAppContainer(
               }
             ),
             navigationOptions: {
-              tabBarLabel: 'Pedir ajuda',
+              tabBarLabel: Help_orderText,
               tabBarIcon: SubmitIconHelp_order,
             },
           },
@@ -86,5 +103,13 @@ SubmitIconCheckins.propTypes = {
 };
 
 SubmitIconHelp_order.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
+
+CheckinsText.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
+
+Help_orderText.propTypes = {
   tintColor: PropTypes.string.isRequired,
 };
