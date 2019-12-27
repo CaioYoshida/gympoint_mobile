@@ -25,7 +25,7 @@ export default createAppContainer(
               Help_order,
             },
             {
-              initialRouteName: 'Help_order',
+              initialRouteName: 'List',
               defaultNavigationOptions: {
                 header: Header,
               },

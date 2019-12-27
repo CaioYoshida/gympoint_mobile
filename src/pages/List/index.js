@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
@@ -14,10 +15,12 @@ import {
   QuestionText,
 } from './styles';
 
-export default function List() {
+export default function List({ navigation }) {
   return (
     <Container>
-      <CreateQuestionButton>Novo Pedido de auxílio</CreateQuestionButton>
+      <CreateQuestionButton onPress={() => navigation.navigate('Help_order')}>
+        Novo Pedido de auxílio
+      </CreateQuestionButton>
       <QuestionList>
         <QuestionBox>
           <QuestionInformations>
@@ -49,3 +52,9 @@ export default function List() {
     </Container>
   );
 }
+
+List.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
