@@ -40,63 +40,64 @@ function Help_orderText({ tintColor }) {
   );
 }
 
-export default createAppContainer(
-  createSwitchNavigator(
-    {
-      SignIn,
-      App: createBottomTabNavigator(
-        {
-          Checkins: {
-            screen: Checkins,
-            navigationOptions: {
-              tabBarLabel: CheckinsText,
-              tabBarIcon: SubmitIconCheckins,
-            },
-          },
-          Help_orders: {
-            screen: createStackNavigator(
-              {
-                List,
-                Answer,
-                Help_order,
+export default (signedIn = false) =>
+  createAppContainer(
+    createSwitchNavigator(
+      {
+        SignIn,
+        App: createBottomTabNavigator(
+          {
+            Checkins: {
+              screen: Checkins,
+              navigationOptions: {
+                tabBarLabel: CheckinsText,
+                tabBarIcon: SubmitIconCheckins,
               },
-              {
-                initialRouteName: 'List',
-                defaultNavigationOptions: {
-                  header: Header,
-                  headerLeft: HeaderBackButton,
+            },
+            Help_orders: {
+              screen: createStackNavigator(
+                {
+                  List,
+                  Answer,
+                  Help_order,
                 },
-                cardStyle: {
-                  backgroundColor: '#fff',
-                },
-              }
-            ),
-            navigationOptions: {
-              tabBarLabel: Help_orderText,
-              tabBarIcon: SubmitIconHelp_order,
+                {
+                  initialRouteName: 'List',
+                  defaultNavigationOptions: {
+                    header: Header,
+                    headerLeft: HeaderBackButton,
+                  },
+                  cardStyle: {
+                    backgroundColor: '#fff',
+                  },
+                }
+              ),
+              navigationOptions: {
+                tabBarLabel: Help_orderText,
+                tabBarIcon: SubmitIconHelp_order,
+              },
             },
           },
-        },
-        {
-          tabBarOptions: {
-            keyboardHidesTabBar: true,
-            activeTintColor: '#EE4E62',
-            inactiveTintColor: '#999',
-            style: {
-              backgroundColor: '#FFF',
-              height: 50,
-              marginBottom: 5,
+          {
+            tabBarOptions: {
+              keyboardHidesTabBar: true,
+              activeTintColor: '#EE4E62',
+              inactiveTintColor: '#999',
+              style: {
+                backgroundColor: '#FFF',
+                height: 50,
+                marginBottom: 5,
+              },
+              initialRouteName: 'Checkins',
             },
-            initialRouteName: 'Checkins',
-          },
-        }
-      ),
-    },
-    {
-      initialRouteName: 'App',
-    }
-  )
-);
+          }
+        ),
+      },
+      {
+        initialRouteName: signedIn ? 'App' : 'SignIn',
+      }
+    )
+  );
 
 SubmitIconCheckins.propTypes = {
   tintColor: PropTypes.string.isRequired,

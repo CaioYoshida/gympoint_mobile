@@ -30,9 +30,10 @@ export default function List({ navigation }) {
             </QuestionStatus>
             <QuestionTime>Há 7 dias</QuestionTime>
           </QuestionInformations>
-          <QuestionText>
+          <QuestionText numberOfLines={3}>
             Olá pessoal da academia, gostaria de saber se quando acordar devo
-            ingerir batata doce e frango logo de primeira, preparar as...
+            ingerir batata doce e frango logo de primeira, preparar as marmitas
+            e lotar a geladeira? Dou um pico de insulina e jogo o hipercalórico?
           </QuestionText>
         </QuestionBox>
         <QuestionBox>
@@ -43,9 +44,10 @@ export default function List({ navigation }) {
             </QuestionStatus>
             <QuestionTime>Há 7 dias</QuestionTime>
           </QuestionInformations>
-          <QuestionText>
+          <QuestionText numberOfLines={3}>
             Olá pessoal da academia, gostaria de saber se quando acordar devo
-            ingerir batata doce e frango logo de primeira, preparar as...
+            ingerir batata doce e frango logo de primeira, preparar as marmitas
+            e lotar a geladeira? Dou um pico de insulina e jogo o hipercalórico?
           </QuestionText>
         </QuestionBox>
       </QuestionList>
