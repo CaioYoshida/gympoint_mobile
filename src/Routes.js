@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createStackNavigator, HeaderBackButton } from 'react-navigation-stack';
+import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -64,11 +64,16 @@ export default (signedIn = false) =>
                 {
                   initialRouteName: 'List',
                   defaultNavigationOptions: {
-                    header: Header,
-                    headerLeft: HeaderBackButton,
-                  },
-                  cardStyle: {
-                    backgroundColor: '#fff',
+                    headerRight: () => <Header />,
+                    headerRightContainerStyle: {
+                      marginRight: 136,
+                    },
+                    headerStyle: {
+                      height: 40,
+                    },
+                    headerLeftContainerStyle: {
+                      marginLeft: 20,
+                    },
                   },
                 }
               ),
