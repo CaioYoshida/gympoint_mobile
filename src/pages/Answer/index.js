@@ -1,4 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
+
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import api from '~/services/api';
 
 import {
   Container,
@@ -10,7 +15,24 @@ import {
   AnswerBox,
 } from './styles';
 
-export default function Help_order() {
+export default function Answer({ navigation }) {
+  const index = JSON.stringify(navigation.getParam('index'));
+
+  const student_id = useSelector(state => state.auth.user.id);
+
+  const [help_order, setHelp_order] = useState();
+
+  useEffect(() => {
+    async function loadHelp_orders() {
+      const response = await api.get(`students/${student_id}/help-orders`);
+
+      const { data } = response;
+
+      setHelp_order(data[index]);
+    }
+    loadHelp_orders();
+  }, [index, student_id]);
+
   return (
     <Container>
       <QuestionBox>
@@ -18,21 +40,22 @@ export default function Help_order() {
           <QuestionStatus>PERGUNTA</QuestionStatus>
           <QuestionTime>Há 7 dias</QuestionTime>
         </QuestionInformations>
-        <QuestionText>
-          Olá pessoal da academia, gostaria de saber se quando acordar devo
-          ingerir batata doce e frango logo de primeira, preparar as marmitas e
-          lotar a geladeira? Dou um pico de insulina e jogo o hipercalórico?
-        </QuestionText>
+        <QuestionText>{help_order && help_order.question}</QuestionText>
         <AnswerBox>
           <QuestionInformations>
             <QuestionStatus>RESPOSTA</QuestionStatus>
           </QuestionInformations>
-          <QuestionText>
-            Opa, isso aí, duas em duas horas, não deixa pra depois, um monstro
-            treina como um, come como dois.
-          </QuestionText>
+          <QuestionText>{help_order && help_order.answer}</QuestionText>
         </AnswerBox>
       </QuestionBox>
     </Container>
   );
 }
+
+Answer.navigationOptions = ({ navigation }) => ({
+  headerLeft: () => (
+    <TouchableOpacity onPress={() => navigation.navigate('List')}>
+      <Icon name="chevron-left" size={20} color="#EE4E62" />
+    </TouchableOpacity>
+  ),
+});

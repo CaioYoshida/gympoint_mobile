@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { TouchableOpacity, ScrollView } from 'react-native';
 
 import Button from '~/Components/Button';
 
@@ -12,11 +13,12 @@ export const CreateQuestionButton = styled(Button)`
   margin-top: 20px;
 `;
 
-export const QuestionList = styled.View`
+export const QuestionList = styled(ScrollView)`
   margin-top: 10px;
+  margin-bottom: 20px;
 `;
 
-export const QuestionBox = styled.View`
+export const QuestionBox = styled(TouchableOpacity)`
   margin-top: 10px;
   padding: 20px;
   background: #fff;

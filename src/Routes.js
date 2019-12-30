@@ -70,6 +70,7 @@ export default (signedIn = false) =>
                     },
                     headerStyle: {
                       height: 40,
+                      elevation: 0,
                     },
                     headerLeftContainerStyle: {
                       marginLeft: 20,

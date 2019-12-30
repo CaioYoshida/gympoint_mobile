@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -33,7 +32,7 @@ export default function List({ navigation }) {
       setHelp_orders(data);
     }
     loadHelp_orders();
-  }, [student_id]);
+  }, [student_id, help_orders]);
 
   return (
     <Container>
@@ -42,8 +41,15 @@ export default function List({ navigation }) {
       </CreateQuestionButton>
       <QuestionList>
         {help_orders &&
-          help_orders.map(help_order => (
-            <QuestionBox key={help_order.id}>
+          help_orders.map((help_order, index) => (
+            <QuestionBox
+              key={help_order.id}
+              onPress={() =>
+                navigation.navigate('Answer', {
+                  index,
+                })
+              }
+            >
               <QuestionInformations>
                 <QuestionStatus>
                   {help_order.answer ? (
@@ -69,14 +75,6 @@ export default function List({ navigation }) {
     </Container>
   );
 }
-
-List.navigationOptions = {
-  headerLeft: () => (
-    <TouchableOpacity onPress={() => {}}>
-      <Icon name="chevron-left" size={20} color="#EE4E62" />
-    </TouchableOpacity>
-  ),
-};
 
 List.propTypes = {
   navigation: PropTypes.shape({
