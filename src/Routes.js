@@ -14,6 +14,8 @@ import List from '~/pages/List';
 import Answer from '~/pages/Answer';
 import Help_order from '~/pages/Help_order';
 
+import Profile from '~/pages/Profile';
+
 import Header from '~/Components/Header';
 
 function SubmitIconCheckins({ tintColor }) {
@@ -36,6 +38,18 @@ function Help_orderText({ tintColor }) {
   return (
     <Text style={{ fontSize: 13, alignSelf: 'center', color: `${tintColor}` }}>
       Pedir ajuda
+    </Text>
+  );
+}
+
+function SubmitIconProfile({ tintColor }) {
+  return <Icon name="person" size={20} color={tintColor} />;
+}
+
+function ProfileText({ tintColor }) {
+  return (
+    <Text style={{ fontSize: 13, alignSelf: 'center', color: `${tintColor}` }}>
+      Perfil
     </Text>
   );
 }
@@ -83,6 +97,13 @@ export default (signedIn = false) =>
                 tabBarIcon: SubmitIconHelp_order,
               },
             },
+            Profile: {
+              screen: Profile,
+              navigationOptions: {
+                tabBarLabel: ProfileText,
+                tabBarIcon: SubmitIconProfile,
+              },
+            },
           },
           {
             tabBarOptions: {
@@ -113,10 +134,18 @@ SubmitIconHelp_order.propTypes = {
   tintColor: PropTypes.string.isRequired,
 };
 
+SubmitIconProfile.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
+
 CheckinsText.propTypes = {
   tintColor: PropTypes.string.isRequired,
 };
 
 Help_orderText.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
+
+ProfileText.propTypes = {
   tintColor: PropTypes.string.isRequired,
 };

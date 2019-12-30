@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { parseISO, formatDistance } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -27,12 +29,18 @@ export default function List({ navigation }) {
     async function loadHelp_orders() {
       const response = await api.get(`students/${student_id}/help-orders`);
 
-      const { data } = response;
+      const data = response.data.map(item => ({
+        ...item,
+        timeDistance: formatDistance(parseISO(item.createdAt), new Date(), {
+          addSuffix: true,
+          locale: pt,
+        }),
+      }));
 
       setHelp_orders(data);
     }
     loadHelp_orders();
-  }, [student_id, help_orders]);
+  }, [student_id]);
 
   return (
     <Container>
@@ -64,7 +72,7 @@ export default function List({ navigation }) {
                     </>
                   )}
                 </QuestionStatus>
-                <QuestionTime>Há 7 dias</QuestionTime>
+                <QuestionTime>{help_order.timeDistance}</QuestionTime>
               </QuestionInformations>
               <QuestionText numberOfLines={3}>
                 {help_order.question}
