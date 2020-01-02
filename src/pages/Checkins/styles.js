@@ -10,10 +10,16 @@ export const Container = styled.View`
 
 export const CheckinButton = styled(Button)`
   margin-top: 20px;
+  margin-bottom: 10px;
+`;
+
+export const CheckinScroll = styled.ScrollView`
+  margin-top: 10px;
+  margin-bottom: 10px;
 `;
 
 export const CheckinView = styled.View`
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 export const CheckinTag = styled.View`

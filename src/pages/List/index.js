@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { parseISO, formatDistance } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+// import { parseISO, formatDistance } from 'date-fns';
+// import pt from 'date-fns/locale/pt';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import api from '~/services/api';
+// import api from '~/services/api';
 
 import {
   Container,
@@ -21,26 +21,7 @@ import {
 } from './styles';
 
 export default function List({ navigation }) {
-  const student_id = useSelector(state => state.auth.user.id);
-
-  const [help_orders, setHelp_orders] = useState();
-
-  useEffect(() => {
-    async function loadHelp_orders() {
-      const response = await api.get(`students/${student_id}/help-orders`);
-
-      const data = response.data.map(item => ({
-        ...item,
-        timeDistance: formatDistance(parseISO(item.createdAt), new Date(), {
-          addSuffix: true,
-          locale: pt,
-        }),
-      }));
-
-      setHelp_orders(data);
-    }
-    loadHelp_orders();
-  }, [student_id]);
+  const help_orders = useSelector(state => state.help_order.help_orders);
 
   return (
     <Container>

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import api from '~/services/api';
 
 import {
   Container,
@@ -18,20 +18,7 @@ import {
 export default function Answer({ navigation }) {
   const index = JSON.stringify(navigation.getParam('index'));
 
-  const student_id = useSelector(state => state.auth.user.id);
-
-  const [help_order, setHelp_order] = useState();
-
-  useEffect(() => {
-    async function loadHelp_orders() {
-      const response = await api.get(`students/${student_id}/help-orders`);
-
-      const { data } = response;
-
-      setHelp_order(data[index]);
-    }
-    loadHelp_orders();
-  }, [index, student_id]);
+  const help_order = useSelector(state => state.help_order.help_orders[index]);
 
   return (
     <Container>
@@ -59,3 +46,10 @@ Answer.navigationOptions = ({ navigation }) => ({
     </TouchableOpacity>
   ),
 });
+
+Answer.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+    getParam: PropTypes.func.isRequired,
+  }).isRequired,
+};
